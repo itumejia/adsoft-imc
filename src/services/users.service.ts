@@ -11,13 +11,8 @@ import { retry, catchError } from 'rxjs/operators';
 
 export class UsersService {
 
-
-  
-  // Define API
- // apiURL = 'https://kubeet-cfdi-api.appspot.com';
  apiURL = 'http://localhost:8080';
 
-//apiURL = 'http://201.147.64.84:8083';
 
   constructor(private http: HttpClient) { }
 
@@ -32,7 +27,7 @@ export class UsersService {
     })
   }  
   // HttpClient API post() method => Create employee
-  postUsers(userApi): Observable<UserApi> {
+  loginUser(userApi): Observable<UserApi> {
     console.log(JSON.stringify(userApi));
     return this.http.post<UserApi>(this.apiURL + '/api/auth/signin', JSON.stringify(userApi), this.httpOptions)
     .pipe(
@@ -40,8 +35,6 @@ export class UsersService {
       catchError(this.MessageError)
     )
   }
-
-
 
   // Error handling 
   handleError(error) {
