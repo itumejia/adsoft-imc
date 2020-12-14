@@ -42,7 +42,8 @@ export class LoginComponent implements OnInit {
 		return this.usersService.loginUser(mydata)
 		 .subscribe((data: any) => {
 			
-			this.storageService.setLocal("token", data.accessToken);		  
+      this.storageService.setLocal("token", data.accessToken);
+      		  
       this.result = data.accessToken;
       alert(data.accessToken);
 			// this.router.navigate(['/']);

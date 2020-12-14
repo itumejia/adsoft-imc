@@ -3,6 +3,8 @@ import { imc } from '../imc/imc'
 import { mcm } from '../mcm/mcm'
 import { act } from '../ACT/act'
 import { asc } from '../asc/asc'
+import { ImcApi } from "../../models/imcapi";
+import { ImcService } from "../../services/imc.service"
 
 
 
@@ -13,7 +15,7 @@ import { asc } from '../asc/asc'
 })
 export class UiComponent implements OnInit {
 
-  constructor() { }
+  constructor(private imcService : ImcService) { }
   weight;
   height;
   age;
@@ -28,7 +30,7 @@ export class UiComponent implements OnInit {
   ngOnInit(): void {
   }
   calculate() {
-    this.isShown = ! this.isShown;
+    //this.isShown = ! this.isShown;
     this.result_imc = imc(this.height, this.weight);
     this.result_mcm = mcm(this.gender, this.weight, this.height);
     this.result_act = act(this.gender,this.weight,this.height, this.age);
@@ -59,4 +61,21 @@ export class UiComponent implements OnInit {
 
 
   }
+  
+  saveimc() {
+    var imc = new ImcApi;
+    imc.iduser = 1;
+    imc.imc = this.result_imc;
+
+  	return this.imcService.createImc(imc)
+		 .subscribe((data: any) => {
+			alert(JSON.stringify(data));
+			
+		})
+		 
+	
+    
+
+  }
+
 }
