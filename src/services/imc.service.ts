@@ -25,7 +25,8 @@ export class ImcService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.storageService.getLocal("token")
+      //'Authorization': 'Bearer ' + this.storageService.getLocal("token")
+      'Authorization': 'Bearer ' + this.storageService.getSession("token")
 
     })
   }  

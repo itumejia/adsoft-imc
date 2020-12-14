@@ -5,6 +5,7 @@ import { act } from '../ACT/act'
 import { asc } from '../asc/asc'
 import { ImcApi } from "../../models/imcapi";
 import { ImcService } from "../../services/imc.service"
+import { StorageService } from "../../services/storage.service";
 
 
 
@@ -15,7 +16,9 @@ import { ImcService } from "../../services/imc.service"
 })
 export class UiComponent implements OnInit {
 
-  constructor(private imcService : ImcService) { }
+  constructor(private imcService : ImcService,
+    private storageService : StorageService
+    ) { }
   weight;
   height;
   age;
@@ -28,6 +31,10 @@ export class UiComponent implements OnInit {
   result_pi;
   isShown: boolean = false ;
   ngOnInit(): void {
+    // test, debe ir en boton logout
+    //this.storageService.localDeleteByKey("token");
+    //alert("deleted token" + this.storageService.getLocal("token"));
+    
   }
   calculate() {
     //this.isShown = ! this.isShown;
