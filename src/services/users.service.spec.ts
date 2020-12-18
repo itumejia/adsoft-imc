@@ -14,7 +14,7 @@ describe('DataApiService', () => {
 
 
 
-  it('should return an Logged User', () => {
+  it('should return an Logged User',  (done: DoneFn) => {
     // Arrange
     const service: UsersService = TestBed.get(UsersService);
 
@@ -29,6 +29,8 @@ describe('DataApiService', () => {
       console.log(user.accessToken);
       
       expect(user.tokenType).toEqual('Bearer');
+      done(); //call DoneFn
+
     });
 
  
